@@ -23,14 +23,13 @@ public class ExactJobDispatcher {
     Intent intent = new Intent(context, ExactJob.class);
     intent.putExtras(jobBundle);
     PendingIntent pendingIntent = null;
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-        pendingIntent = PendingIntent.getService
-               (context, jobKey.hashCode(), intent, PendingIntent.FLAG_MUTABLE);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+      pendingIntent = PendingIntent.getService
+        (context, jobKey.hashCode(), intent, PendingIntent.FLAG_MUTABLE);
     }
-    else
-    {
-         pendingIntent = PendingIntent.getService
-               (context, jobKey.hashCode(), intent, override ? PendingIntent.FLAG_CANCEL_CURRENT : PendingIntent.FLAG_ONE_SHOT);
+    else {
+      pendingIntent = PendingIntent.getService
+        (context, jobKey.hashCode(), intent, override ? PendingIntent.FLAG_CANCEL_CURRENT : PendingIntent.FLAG_ONE_SHOT);
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
